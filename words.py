@@ -1,6 +1,6 @@
 from random import choice
 
-words = ['abruptly'
+words_arr = ['abruptly'
 'absurd',
 'abyss',
 'affix',
@@ -214,6 +214,5 @@ words = ['abruptly'
 'zodiac']
 
 def selected_word(): 
-    return choice(words)
+    return choice(words_arr).upper()
 
-print (selected_word())
