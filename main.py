@@ -10,10 +10,12 @@ from images import hangman
 word = selected_word()
 reveal = list(len(word)*'_')
 wrong_entered_letters = list()
-lives = 7
+MAX_TRIES = 7
 gameDone = False
 
-def check_letter(letter,word):
+
+
+def check_letter(letter, word):
     global reveal
     for i in range(0,len(word)):
         letter = word[i]
@@ -27,15 +29,15 @@ def check_letter(letter,word):
 
 def status(): 
     os.system('clear')
-    print(hangman[7-lives] , word)
+    print(hangman[7-MAX_TRIES])
     print(' '.join([str(e) for e in reveal]))
-    print ('Du har ', lives , 'försök kvar')
+    print ('Du har ', MAX_TRIES , 'försök kvar')
     if len(wrong_entered_letters) > 0 :
         print('Du har försökt redan med : ' , wrong_entered_letters)
 
 
 
-while gameDone == False and lives > 0:
+while gameDone == False and MAX_TRIES > 0:
     status()
     guess = input('Gissa en bokstav ... Oops ordet är på engelska')
     guess = guess.upper()
@@ -46,7 +48,7 @@ while gameDone == False and lives > 0:
     if len(guess) == 1 and guess in word:
         gameDone = check_letter(guess,word)
     else : 
-        lives -=1
+        MAX_TRIES -=1
         wrong_entered_letters.append(guess)
     status()
 if gameDone:
